@@ -2,150 +2,139 @@ Created by PLY version 3.4 (http://www.dabeaz.com/ply)
 
 Grammar
 
-Rule 0     S' -> query
-Rule 1     query -> andquery
-Rule 2     andquery -> andquery AND orquery
-Rule 3     andquery -> orquery
-Rule 4     orquery -> orquery OR unitquery
-Rule 5     orquery -> unitquery
-Rule 6     unitquery -> ANNOTATION
-Rule 7     unitquery -> REL ANNOTATION
+Rule 0     S' -> andquery
+Rule 1     andquery -> andquery AND orquery
+Rule 2     andquery -> orquery
+Rule 3     orquery -> orquery OR unitquery
+Rule 4     orquery -> unitquery
+Rule 5     unitquery -> ANNOTATION
+Rule 6     unitquery -> REL ANNOTATION
 
 Terminals, with rules where they appear
 
-AND                  : 2
-ANNOTATION           : 6 7
-OR                   : 4
-REL                  : 7
+AND                  : 1
+ANNOTATION           : 5 6
+OR                   : 3
+REL                  : 6
 error                : 
 
 Nonterminals, with rules where they appear
 
-andquery             : 1 2
-orquery              : 2 3 4
-query                : 0
-unitquery            : 4 5
+andquery             : 1 0
+orquery              : 1 2 3
+unitquery            : 3 4
 
 Parsing method: LALR
 
 state 0
 
-    (0) S' -> . query
-    (1) query -> . andquery
-    (2) andquery -> . andquery AND orquery
-    (3) andquery -> . orquery
-    (4) orquery -> . orquery OR unitquery
-    (5) orquery -> . unitquery
-    (6) unitquery -> . ANNOTATION
-    (7) unitquery -> . REL ANNOTATION
+    (0) S' -> . andquery
+    (1) andquery -> . andquery AND orquery
+    (2) andquery -> . orquery
+    (3) orquery -> . orquery OR unitquery
+    (4) orquery -> . unitquery
+    (5) unitquery -> . ANNOTATION
+    (6) unitquery -> . REL ANNOTATION
 
-    ANNOTATION      shift and go to state 2
+    ANNOTATION      shift and go to state 4
     REL             shift and go to state 3
 
-    query                          shift and go to state 4
-    andquery                       shift and go to state 5
+    andquery                       shift and go to state 2
     orquery                        shift and go to state 1
-    unitquery                      shift and go to state 6
+    unitquery                      shift and go to state 5
 
 state 1
 
-    (3) andquery -> orquery .
-    (4) orquery -> orquery . OR unitquery
+    (2) andquery -> orquery .
+    (3) orquery -> orquery . OR unitquery
 
-    AND             reduce using rule 3 (andquery -> orquery .)
-    $end            reduce using rule 3 (andquery -> orquery .)
-    OR              shift and go to state 7
+    AND             reduce using rule 2 (andquery -> orquery .)
+    $end            reduce using rule 2 (andquery -> orquery .)
+    OR              shift and go to state 6
 
 
 state 2
 
-    (6) unitquery -> ANNOTATION .
+    (0) S' -> andquery .
+    (1) andquery -> andquery . AND orquery
 
-    OR              reduce using rule 6 (unitquery -> ANNOTATION .)
-    AND             reduce using rule 6 (unitquery -> ANNOTATION .)
-    $end            reduce using rule 6 (unitquery -> ANNOTATION .)
+    AND             shift and go to state 7
 
 
 state 3
 
-    (7) unitquery -> REL . ANNOTATION
+    (6) unitquery -> REL . ANNOTATION
 
     ANNOTATION      shift and go to state 8
 
 
 state 4
 
-    (0) S' -> query .
+    (5) unitquery -> ANNOTATION .
 
+    OR              reduce using rule 5 (unitquery -> ANNOTATION .)
+    AND             reduce using rule 5 (unitquery -> ANNOTATION .)
+    $end            reduce using rule 5 (unitquery -> ANNOTATION .)
 
 
 state 5
 
-    (1) query -> andquery .
-    (2) andquery -> andquery . AND orquery
+    (4) orquery -> unitquery .
 
-    $end            reduce using rule 1 (query -> andquery .)
-    AND             shift and go to state 9
+    OR              reduce using rule 4 (orquery -> unitquery .)
+    AND             reduce using rule 4 (orquery -> unitquery .)
+    $end            reduce using rule 4 (orquery -> unitquery .)
 
 
 state 6
 
-    (5) orquery -> unitquery .
+    (3) orquery -> orquery OR . unitquery
+    (5) unitquery -> . ANNOTATION
+    (6) unitquery -> . REL ANNOTATION
 
-    OR              reduce using rule 5 (orquery -> unitquery .)
-    AND             reduce using rule 5 (orquery -> unitquery .)
-    $end            reduce using rule 5 (orquery -> unitquery .)
+    ANNOTATION      shift and go to state 4
+    REL             shift and go to state 3
 
+    unitquery                      shift and go to state 9
 
 state 7
 
-    (4) orquery -> orquery OR . unitquery
-    (6) unitquery -> . ANNOTATION
-    (7) unitquery -> . REL ANNOTATION
+    (1) andquery -> andquery AND . orquery
+    (3) orquery -> . orquery OR unitquery
+    (4) orquery -> . unitquery
+    (5) unitquery -> . ANNOTATION
+    (6) unitquery -> . REL ANNOTATION
 
-    ANNOTATION      shift and go to state 2
+    ANNOTATION      shift and go to state 4
     REL             shift and go to state 3
 
-    unitquery                      shift and go to state 10
+    orquery                        shift and go to state 10
+    unitquery                      shift and go to state 5
 
 state 8
 
-    (7) unitquery -> REL ANNOTATION .
+    (6) unitquery -> REL ANNOTATION .
 
-    OR              reduce using rule 7 (unitquery -> REL ANNOTATION .)
-    AND             reduce using rule 7 (unitquery -> REL ANNOTATION .)
-    $end            reduce using rule 7 (unitquery -> REL ANNOTATION .)
+    OR              reduce using rule 6 (unitquery -> REL ANNOTATION .)
+    AND             reduce using rule 6 (unitquery -> REL ANNOTATION .)
+    $end            reduce using rule 6 (unitquery -> REL ANNOTATION .)
 
 
 state 9
 
-    (2) andquery -> andquery AND . orquery
-    (4) orquery -> . orquery OR unitquery
-    (5) orquery -> . unitquery
-    (6) unitquery -> . ANNOTATION
-    (7) unitquery -> . REL ANNOTATION
+    (3) orquery -> orquery OR unitquery .
 
-    ANNOTATION      shift and go to state 2
-    REL             shift and go to state 3
+    OR              reduce using rule 3 (orquery -> orquery OR unitquery .)
+    AND             reduce using rule 3 (orquery -> orquery OR unitquery .)
+    $end            reduce using rule 3 (orquery -> orquery OR unitquery .)
 
-    orquery                        shift and go to state 11
-    unitquery                      shift and go to state 6
 
 state 10
 
-    (4) orquery -> orquery OR unitquery .
+    (1) andquery -> andquery AND orquery .
+    (3) orquery -> orquery . OR unitquery
 
-    OR              reduce using rule 4 (orquery -> orquery OR unitquery .)
-    AND             reduce using rule 4 (orquery -> orquery OR unitquery .)
-    $end            reduce using rule 4 (orquery -> orquery OR unitquery .)
-
-
-state 11
-
-    (2) andquery -> andquery AND orquery .
-    (4) orquery -> orquery . OR unitquery
-
-    AND             reduce using rule 2 (andquery -> andquery AND orquery .)
-    $end            reduce using rule 2 (andquery -> andquery AND orquery .)
-    OR              shift and go to state 7
+    AND             reduce using rule 1 (andquery -> andquery AND orquery .)
+    $end            reduce using rule 1 (andquery -> andquery AND orquery .)
+    OR              shift and go to state 6
 
