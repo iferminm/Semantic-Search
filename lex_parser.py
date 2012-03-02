@@ -1,4 +1,7 @@
 # -*- encoding: utf-8 -*-
+# Programmed by israelord <iferminm at gmail dot com>
+
+
 
 tokens = (
     'AND',
@@ -17,6 +20,10 @@ _fix_lower = ["in", "or", "on", "of"]
 
 
 def fix_annotation(value):
+    """
+    This fixes the annotation and puts the
+    string in CamelCase form
+    """
     tokens = value.split()
     for i in range(0, len(tokens)):
         if not tokens[i].isupper() and not tokens[i] in _fix_lower:
@@ -43,11 +50,11 @@ lex.lex()
 # Parsing rules
 precedence = ( )
 
-# Q : QAnd | QOr
+# Q : QOr | QAnd
 #
-# QAnd : QAnd && QAnd | QOr 
+# QOr : QAnd || QOr | QAnd
 #
-# QOr : QOr || QUnit | QUnit
+# QAnd : QAnd && QUnit | QUnit
 #
 # QUnit : ANNOTATION | REL ANNOTATION
 #
@@ -85,11 +92,6 @@ def p_error(t):
 import ply.yacc as yacc
 yacc.yacc()
 
-while 1:
-    try:
-        s = raw_input('calc > ')   # Use raw_input on Python 2
-    except EOFError:
-        break
-    parsed = yacc.parse(s)
+def parse(text):
+    return yacc.parse(text)
 
-    print parsed
