@@ -5,9 +5,9 @@ _tabversion = '3.2'
 
 _lr_method = 'LALR'
 
-_lr_signature = '\x85\x89\x8f\x04\xac\x18\xe43/\xc4\x8c\xad\xc6\xea\xce\x8a'
+_lr_signature = 'ZN\x93g\x91\x15\xb0k0o\xb8\xb48&\xf6e'
     
-_lr_action_items = {'AND':([1,2,4,5,8,9,10,],[-2,7,-5,-4,-6,-3,-1,]),'$end':([1,2,4,5,8,9,10,],[-2,0,-5,-4,-6,-3,-1,]),'ANNOTATION':([0,3,6,7,],[4,8,4,4,]),'REL':([0,6,7,],[3,3,3,]),'OR':([1,4,5,8,9,10,],[6,-5,-4,-6,-3,6,]),}
+_lr_action_items = {'AND':([1,4,5,8,9,10,],[6,-5,-4,-6,-3,6,]),'$end':([1,2,4,5,8,9,10,],[-2,0,-5,-4,-6,-3,-1,]),'ANNOTATION':([0,3,6,7,],[4,8,4,4,]),'REL':([0,6,7,],[3,3,3,]),'OR':([1,2,4,5,8,9,10,],[-2,7,-5,-4,-6,-3,-1,]),}
 
 _lr_action = { }
 for _k, _v in _lr_action_items.items():
@@ -16,7 +16,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'andquery':([0,],[2,]),'orquery':([0,7,],[1,10,]),'unitquery':([0,6,7,],[5,9,5,]),}
+_lr_goto_items = {'andquery':([0,7,],[1,10,]),'orquery':([0,],[2,]),'unitquery':([0,6,7,],[5,9,5,]),}
 
 _lr_goto = { }
 for _k, _v in _lr_goto_items.items():
@@ -25,11 +25,11 @@ for _k, _v in _lr_goto_items.items():
        _lr_goto[_x][_k] = _y
 del _lr_goto_items
 _lr_productions = [
-  ("S' -> andquery","S'",1,None,None,None),
-  ('andquery -> andquery AND orquery','andquery',3,'p_andquery_and','ply_masterclass.py',53),
-  ('andquery -> orquery','andquery',1,'p_andquery_or','ply_masterclass.py',58),
-  ('orquery -> orquery OR unitquery','orquery',3,'p_orquery_or','ply_masterclass.py',63),
-  ('orquery -> unitquery','orquery',1,'p_orquery_unit','ply_masterclass.py',68),
-  ('unitquery -> ANNOTATION','unitquery',1,'p_unitquery_annot','ply_masterclass.py',73),
-  ('unitquery -> REL ANNOTATION','unitquery',2,'p_unitquery_rel','ply_masterclass.py',78),
+  ("S' -> orquery","S'",1,None,None,None),
+  ('orquery -> orquery OR andquery','orquery',3,'p_orquery_or','ply_masterclass.py',55),
+  ('orquery -> andquery','orquery',1,'p_orquery_and','ply_masterclass.py',62),
+  ('andquery -> andquery AND unitquery','andquery',3,'p_andquery_and','ply_masterclass.py',69),
+  ('andquery -> unitquery','andquery',1,'p_andquery_unit','ply_masterclass.py',76),
+  ('unitquery -> ANNOTATION','unitquery',1,'p_unitquery_annot','ply_masterclass.py',83),
+  ('unitquery -> REL ANNOTATION','unitquery',2,'p_unitquery_rel','ply_masterclass.py',90),
 ]
