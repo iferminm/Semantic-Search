@@ -1,7 +1,8 @@
 # -*- encoding: utf-8 -*-
 # Programmed by israelord <iferminm at gmail dot com>
 
-
+import ply.lex as lex
+import ply.yacc as yacc
 
 tokens = (
     'AND',
@@ -44,8 +45,8 @@ def t_error(t):
     t.lexer.skip(1)
     
 # Build the lexer
-import ply.lex as lex
-lex.lex()
+def build_lexer():
+    lex.lex()
 
 # Parsing rules
 precedence = ( )
@@ -89,9 +90,8 @@ def p_unitquery_rel(t):
 def p_error(t):
     print("Syntax error at '%s'" % t.value)
 
-import ply.yacc as yacc
-yacc.yacc()
-
 def parse(text):
+    build_lexer()
+    yacc.yacc()
     return yacc.parse(text)
 
