@@ -13,8 +13,16 @@ t_AND         = r'&&'
 t_OR          = r'\|\|'
 t_REL         = r'\?rel:'
 
+_fix_lower = ["in", "or", "on", "of"]
+
+
 def fix_annotation(value):
-    pass
+    tokens = value.split()
+    for i in range(0, len(tokens)):
+        if not tokens[i].isupper() and not tokens[i] in _fix_lower:
+            tokens[i] = tokens[i].capitalize()
+    return ''.join(tokens)
+
 
 def t_ANNOTATION(t):
     r'[a-zA-Z0-9][a-zA-Z0-9\ ]*'
@@ -65,7 +73,7 @@ def p_andquery_unit(t):
 
 def p_unitquery_annot(t):
     'unitquery : ANNOTATION'
-    t[0] = ('unitquery_annot', t[1])
+    t[0] = t[1]
 
 def p_unitquery_rel(t):
     'unitquery : REL ANNOTATION'
