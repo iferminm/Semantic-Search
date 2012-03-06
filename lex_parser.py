@@ -8,14 +8,16 @@ tokens = (
     'AND',
     'OR',
     'REL',
+    'NOT',
     'ANNOTATION',
 )
 
 # Tokens
 
-t_AND         = r'&&'
-t_OR          = r'\|\|'
-t_REL         = r'\?rel:'
+t_AND = r'&&'
+t_OR = r'\|\|'
+t_REL = r'\?rel:'
+t_NOT = r'\-'
 
 _fix_lower = ["in", "or", "on", "of"]
 
@@ -57,7 +59,7 @@ precedence = ( )
 #
 # QAnd : QAnd && QUnit | QUnit
 #
-# QUnit : ANNOTATION | REL ANNOTATION
+# QUnit : ANNOTATION | REL ANNOTATION | NOT ANNOTATION
 #
 # a | b & c | d
 # 
@@ -87,6 +89,10 @@ def p_unitquery_rel(t):
     'unitquery : REL ANNOTATION'
     t[0] = (t[1], t[2])
 
+def p_unitquery_not(t):
+    'unitquery : NOT ANNOTATION'
+    t[0] = (t[1], t[2])
+
 def p_error(t):
     print("Syntax error at '%s'" % t.value)
 
@@ -95,3 +101,7 @@ def parse(text):
     yacc.yacc()
     return yacc.parse(text)
 
+if __name__ == '__main__':
+    while True:
+        text = raw_input("text> ")
+        print parse(text)
