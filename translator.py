@@ -16,6 +16,7 @@ class Translator:
             'owl': 'http://www.w3.org/2002/07/owl#',
         }
         self.__condition_lists = []
+        self.__condition_dict = {}
 
     def __get_parsed_tree(self, complete_query):
         """
@@ -65,6 +66,17 @@ class Translator:
             value = self.prefixes['thesis'] + tree
             self.__condition_lists.append(["?s <%s> <%s>" % (condition, value)])
 
+    def build_dict(self, query):
+        """
+        We build a hash with the simple queries as keys
+        """
+        con_list = self.build_conditions_list(query)
+        for e in con_list:
+            # Build the key
+            key = ' && '. join([con.split('#')[len(con.split('#')) - 1].replace('>', '') for con in e])
+            self.__condition_dict[key] = e
+        return self.__condition_dict
+
     def build_conditions_list(self, query):
         """
         takes a query on the very simple query language
@@ -73,9 +85,6 @@ class Translator:
         """
         tree = self.__get_parsed_tree(query)
         self.__proccess_tree(tree)
-        for con in self.__condition_lists:
-            print ' . '.join(con)
-
         return self.__condition_lists
 
 if __name__ == '__main__':
@@ -83,4 +92,4 @@ if __name__ == '__main__':
         t = Translator()
         complete_query = raw_input("query> ")
         print t.build_conditions_list(complete_query)
-
+        print t.build_dict(complete_query)
