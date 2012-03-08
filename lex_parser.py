@@ -18,26 +18,8 @@ t_AND = r'&&'
 t_OR = r'\|\|'
 t_REL = r'\?rel:'
 t_NOT = r'\-'
+t_ANNOTATION = r'[a-zA-Z0-9][a-zA-Z0-9\ ]*'
 
-_fix_lower = ["in", "or", "on", "of"]
-
-
-def fix_annotation(value):
-    """
-    This fixes the annotation and puts the
-    string in CamelCase form
-    """
-    tokens = value.split()
-    for i in range(0, len(tokens)):
-        if not tokens[i].isupper() and not tokens[i] in _fix_lower:
-            tokens[i] = tokens[i].capitalize()
-    return ''.join(tokens)
-
-
-def t_ANNOTATION(t):
-    r'[a-zA-Z0-9][a-zA-Z0-9\ ]*'
-    t.value = fix_annotation(t.value)
-    return t
 
 # Ignored characters
 t_ignore = " \t\n"
