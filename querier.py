@@ -9,17 +9,30 @@ class Querier:
         self.__endpoint = "http://localhost:8890/sparql"
         self.__models = {'thesis': 'thesis:model'}
 
-    def query(self):
-        sparql = SPARQLWrapper(self.__endpoint)
-        sparql.setQuery("""
-            SELECT * FROM <thesis:model> WHERE {?s <http://localhost/ontologies/ThesisOntology.owl#has-annotation> ?o}
-        """)
-        sparql.setReturnFormat(JSON)
-        results = sparql.query().convert()
-        print results
+    def __build_sparql(self, conditions):
+        query = "SELECT * FROM <%s> WHERE { %s }" % (self.__models['thesis'], ' . '.join(conditions))
+        print query
+        return query
 
+    def __translate_query(self, simple_query):
+        translator = Translator()
+        conditions = translator.build_conditions_list(simple_query)
+        return conditions
 
-
+    def query(self, simple_query):
+        conditions = self.__translate_query(simple_query)
+        results = {}
+        print conditions
+        for con in conditions:
+            sparql = SPARQLWrapper(self.__endpoint)
+            query = self.__build_sparql(con)
+            sparql.setQuery(self.__build_sparql(con))
+            sparql.setReturnFormat(JSON)
+            results = sparql.query().convert()
+            print results
+            
 if __name__ == '__main__':
-    querier = Querier()
-    querier.query()
+    while True:
+        simple_query = raw_input('query> ')
+        querier = Querier()
+        querier.query(simple_query)
