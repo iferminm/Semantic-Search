@@ -3,6 +3,7 @@
 from SPARQLWrapper import SPARQLWrapper
 from SPARQLWrapper import JSON 
 import lex_parser as parser
+
 class Translator:
     """
     This class translates the simple queries to
