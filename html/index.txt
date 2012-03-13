@@ -1,0 +1,14 @@
+<%include file="header.txt"/>
+
+<form action="do_query" method="POST">
+<div id="searcher">
+    <table width="40%">
+        <tr>
+            <td>Search</td>
+            <td><input name="query" type="text" size="100" /></td>
+            <td><input type="submit" /></td>
+        </tr>
+    </table>
+</form>
+</div>
+<%include file="footer.txt"/>

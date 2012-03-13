@@ -1,0 +1,7 @@
+<html>
+<head>
+    <%! import cherrypy %>
+    <title>ComSci Search Demo</title>
+    <link rel="Stylesheet" href="${cherrypy.url('/html/style.css')}" type="text/css"> </link>
+</head>
+<body>

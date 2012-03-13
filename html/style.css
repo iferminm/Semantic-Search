@@ -1,0 +1,17 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    padding: 0px;
+    background-color: yellow;
+}
+
+DIV#searcher {
+    background-color: blue;
+    width: 90%;
+    margin-top: 20%;
+    padding: 10px;
+    margin-left: 5%;
+}
