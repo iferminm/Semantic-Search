@@ -11,7 +11,6 @@ class Querier:
 
     def __build_sparql(self, conditions):
         query = "SELECT * FROM <%s> WHERE { %s }" % (self.__models['thesis'], ' . '.join(conditions))
-        print query
         return query
 
     def __translate_query(self, simple_query):
@@ -21,18 +20,18 @@ class Querier:
 
     def query(self, simple_query):
         conditions = self.__translate_query(simple_query)
-        results = {}
-        print conditions
+        results = []
         for con in conditions:
             sparql = SPARQLWrapper(self.__endpoint)
             query = self.__build_sparql(con)
             sparql.setQuery(self.__build_sparql(con))
             sparql.setReturnFormat(JSON)
-            results = sparql.query().convert()
-            print results
+            result_set = sparql.query().convert()
+            results.append(result_set)
+        return results
             
 if __name__ == '__main__':
     while True:
         simple_query = raw_input('query> ')
         querier = Querier()
-        querier.query(simple_query)
+        print querier.query(simple_query)
