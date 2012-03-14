@@ -22,14 +22,14 @@ class Searcher:
         Renders the results page
         """
         q = Querier()
+        results = None
         try:
             # extracts only the bindings from the result dictionary
             results = [r['results']['bindings'] for r in q.query(str(query)) if r['results']['bindings'] != []]
         except:
             # in case of any exception should render an error page
             results = "ERROR"
-        template = Template("<p>%s</p>" % results)
-        return template.render()
+        return self.serve_template('results.txt', results=results)
 
     @cherrypy.expose
     def index(self):
