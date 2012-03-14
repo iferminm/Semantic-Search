@@ -1,5 +1,8 @@
 <%include file="header.txt"/>
 
 <h1>RESULTS</h1>
+
+
 ${results}
+
 <%include file="footer.txt"/>
