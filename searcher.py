@@ -1,0 +1,42 @@
+# -*- encoding: utf-8 -*-
+# Programmed by: israelord <iferminm at gmail dot com>
+from mako.template import Template
+from mako.lookup import TemplateLookup
+from querier import Querier
+import cherrypy
+import os
+
+lookup = TemplateLookup(directories=['html','html/css'])
+
+class Searcher:
+    def serve_template(self, template_name, **kwargs):
+        """
+        Serves any existing template by name
+        """
+        template = lookup.get_template(template_name)
+        return template.render(**kwargs)
+
+    @cherrypy.expose
+    def do_query(self, query):
+        """
+        Renders the results page
+        """
+        q = Querier()
+        try:
+            # extracts only the bindings from the result dictionary
+            results = [r['results']['bindings'] for r in q.query(str(query)) if r['results']['bindings'] != []]
+        except:
+            # in case of any exception should render an error page
+            results = "ERROR"
+        template = Template("<p>%s</p>" % results)
+        return template.render()
+
+    @cherrypy.expose
+    def index(self):
+        """
+        Renders the main search page
+        """
+        return self.serve_template('index.txt')
+
+if __name__ == '__main__':
+    cherrypy.quickstart(Searcher(), '/', 'searcher.cfg')
