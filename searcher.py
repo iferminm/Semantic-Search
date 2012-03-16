@@ -39,4 +39,5 @@ class Searcher:
         return self.serve_template('index.txt')
 
 if __name__ == '__main__':
+    cherrypy.config.update({'server.socket_port': 2112})
     cherrypy.quickstart(Searcher(), '/', 'searcher.cfg')
