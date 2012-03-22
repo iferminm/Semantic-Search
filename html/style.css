@@ -5,13 +5,22 @@
 
 body {
     padding: 0px;
-    background-color: yellow;
+    background-image: url('spacefun-wallpaper.png');
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-color: black;
+}
+
+P.bold {
+    font-family: sans-serif;
+    font-weight: bold;
 }
 
 DIV#searcher {
-    background-color: blue;
-    width: 90%;
+    background-color: #305e99;
+    width: 68%;
     margin-top: 20%;
     padding: 10px;
-    margin-left: 5%;
+    margin-left: 12%;
+    border: dotted #b4303c 2px;
 }
