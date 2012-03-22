@@ -2,7 +2,26 @@
 
 <h1>RESULTS</h1>
 
+%if type(results) == str:
+    <h1>ERROR</h1>
+%else:
 
-${results}
+<%
+    res = [v['s']['value'] for v in results ]
+%>
+
+<table>
+    % for r in res:
+        ${mkrow(r)}
+    % endfor
+</table>
+
+%endif
+
+<%def name="mkrow(value)">
+    <tr>
+        <td><a href="${value}">${value}</a></td>
+    </tr>
+</%def>
 
 <%include file="footer.txt"/>
