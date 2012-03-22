@@ -4,6 +4,7 @@ from mako.template import Template
 from mako.lookup import TemplateLookup
 from querier import Querier
 import cherrypy
+from itertools import chain
 import os
 
 lookup = TemplateLookup(directories=['html','html/css'])
@@ -16,6 +17,9 @@ class Searcher:
         template = lookup.get_template(template_name)
         return template.render(**kwargs)
 
+    def unpack_results(self, results):
+        return list(chain(*results))
+
     @cherrypy.expose
     def do_query(self, query):
         """
@@ -25,7 +29,8 @@ class Searcher:
         results = None
         try:
             # extracts only the bindings from the result dictionary
-            results = [r['results']['bindings'] for r in q.query(str(query)) if r['results']['bindings'] != []]
+            bindings = [r['results']['bindings'] for r in q.query(str(query)) if r['results']['bindings'] != []]
+            results = self.unpack_results(bindings)
         except:
             # in case of any exception should render an error page
             results = "ERROR"
