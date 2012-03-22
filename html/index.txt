@@ -4,7 +4,7 @@
 <div id="searcher">
     <table width="40%">
         <tr>
-            <td>Search</td>
+            <td><p class="bold">Search: </p></td>
             <td><input name="query" type="text" size="100" /></td>
             <td><input type="submit" /></td>
         </tr>
