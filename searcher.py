@@ -7,7 +7,7 @@ import cherrypy
 from itertools import chain
 import os
 
-lookup = TemplateLookup(directories=['html','html/css'])
+lookup = TemplateLookup(directories=['html'])
 
 class Searcher:
     def serve_template(self, template_name, **kwargs):
