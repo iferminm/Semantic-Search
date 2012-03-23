@@ -4,9 +4,10 @@
 <div id="searcher">
     <table width="40%">
         <tr>
-            <td><p class="bold">Search: </p></td>
             <td><input name="query" type="text" size="100" /></td>
-            <td><input type="submit" /></td>
+        </tr>
+        <tr>
+            <td><p align="center"><input class="search" type="submit" value="Search"/></p></td>
         </tr>
     </table>
 </form>
