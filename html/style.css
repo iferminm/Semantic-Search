@@ -16,11 +16,35 @@ P.bold {
     font-weight: bold;
 }
 
+INPUT.search{
+    padding: 5px;
+    font-size: 12pt;
+    margin-top: 3%;
+    border-right: solid black 2px;
+    border-bottom: solid black 2px;
+}
+
 DIV#searcher {
-    background-color: #305e99;
     width: 68%;
     margin-top: 20%;
     padding: 10px;
-    margin-left: 12%;
-    border: dotted #b4303c 2px;
+    margin-left: 20%;
+}
+
+A {
+    color: #cfbdbd;
+}
+
+A:visited {
+    color: white;
+}
+
+A:hover {
+    color: yellow;
+}
+
+DIV#results {
+    color: #FFF;
+    margin-top: 10%;
+    margin-left: 5%;
 }
