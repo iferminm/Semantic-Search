@@ -1,7 +1,5 @@
 <%include file="header.txt"/>
 
-<h1>RESULTS</h1>
-
 %if type(results) == str:
     <h1>ERROR</h1>
 %else:
@@ -10,12 +8,14 @@
     res = [v['s']['value'] for v in results ]
 %>
 
-<table>
-    % for r in res:
-        ${mkrow(r)}
-    % endfor
-</table>
-
+<div id="results">
+    <h1>Results:</h1>
+    <table>
+        % for r in res:
+            ${mkrow(r)}
+        % endfor
+    </table>
+</div>
 %endif
 
 <%def name="mkrow(value)">
