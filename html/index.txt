@@ -1,5 +1,6 @@
 <%include file="header.txt"/>
 
+<div id="owl">
 <form action="do_query" method="POST">
 <div id="searcher">
     <table width="40%">
@@ -10,6 +11,7 @@
             <td><p align="center"><input class="search" type="submit" value="Search"/></p></td>
         </tr>
     </table>
+</div>
 </form>
 </div>
 <%include file="footer.txt"/>
