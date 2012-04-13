@@ -11,6 +11,16 @@ body {
     background-color: black;
 }
 
+DIV#owl {
+    padding: 0px;
+    background-image: url('buho_2.gif');
+    background-repeat: no-repeat;
+    background-position: center top;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
 P.bold {
     font-family: sans-serif;
     font-weight: bold;
@@ -30,6 +40,7 @@ DIV#searcher {
     padding: 10px;
     margin-left: 20%;
 }
+
 
 A {
     color: #cfbdbd;
